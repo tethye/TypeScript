@@ -7,8 +7,11 @@ It explains *why TypeScript exists*, *how it improves JavaScript*, and *how to s
 
 ## What is TypeScript?
 A programming language to address short commings of js.
+
 **Java Script** - Without Discipline
+
 **Type Script** - with Discipline
+
 
 Make on top of javascript with type chekcking.Every valid JavaScript file is also a valid TypeScript file, so you can gradually adopt it without rewriting your codebase. but ts  add some really cool features of js that help us build more robust and maintainable applications.
 
@@ -16,6 +19,7 @@ JavaScript is the scripting language used in browsers to make websites interacti
 It supports features like constructor functions and prototypes, but it uses **dynamic typing**, meaning a variable’s type can change at runtime without any error.
 
 ***Staticaly Typed*** - C++, Java, C#, TS -> here Type determined in compile time
+
 ***Dynamically Typed*** - JavaScript, Python etc. -> Type determined in runtime
 
 
