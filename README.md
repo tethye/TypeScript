@@ -92,12 +92,13 @@ Node.js installed
 npm (comes with Node.js)
 
 Install TypeScript globally
-npm install -g typescript
+
+**npm install -g typescript**
 
 
 On Mac or Linux, you may need:
 
-sudo npm install -g typescript
+**sudo npm install -g typescript**
 
 Using TypeScript
 
@@ -105,8 +106,10 @@ TypeScript files use the .ts extension
 
 Browsers only understand JavaScript, so you must compile .ts → .js
 
-Compile a TypeScript file
-tsc script.ts
+Compile a TypeScript  named script.ts
+
+
+**tsc script.ts**
 
 
 This generates:
@@ -118,14 +121,16 @@ Important
 In HTML files, always import the compiled .js file, not .ts.
 
 Setting Up a TypeScript Project
-Initialize npm
-npm init
+
+#Initialize npm
+**npm init**
 
 
-Creates a package.json file.
+Creates a ** package.json** file.
 
 Install a lightweight development server
-npm install light-server --save-dev
+
+**npm install light-server --save-dev**
 
 
 light-server:
@@ -135,10 +140,10 @@ Runs a local server
 Automatically reloads the browser on changes
 
 Initialize TypeScript configuration
-tsc --init
+**tsc --init**
 
 
-Creates a tsconfig.json file.
+Creates a **tsconfig.json** file.
 
 Once this file exists, you can compile all TypeScript files by running:
 
