@@ -264,6 +264,9 @@ Different from void (void functions finish execution but return nothing).
 
 With strictNullChecks: true:
 ```ts
+let canNull = null // means canNull: null . here null is behave like a type
+canNull = 12; ❌ Error Can't assign value without null
+
 let canBeNull: number | null = null; // ✅ Allowed
 canBeNull = 12; // ✅ Allowed
 canBeNull = undefined; // ❌ Error
