@@ -200,12 +200,12 @@ More scalable
 Less error-prone
 
 # Project Structure (Suggested)
-src/
- ├── basics/
- ├── interfaces/
- ├── generics/
- └── index.ts
-dist/
-tsconfig.json
-package.json
+src/\n
+ ├── basics/ \n
+ ├── interfaces/ \n
+ ├── generics/ \n
+ └── index.ts \n
+dist/ \n
+tsconfig.json \n
+package.json \n
 
