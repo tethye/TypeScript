@@ -15,7 +15,19 @@ TypeScript code gets compiled into regular JavaScript. Types exist only during d
 ---
 ## Type Basics
 
-TypeScript's most important feature is types.
+TypeScript's most important feature is types. 
+
+| JavaScript | Extends in TypeScript |
+|-----|------------|
+| number | any |
+| string | unknown |
+| boolean | never |
+| null   | enum |
+| undefined | tuple |
+| object |  |
+
+* TypeScript compiler can detect variable based on their values like 123-456-789 detect as a number
+* If we don't initialize variable, it's type will be 'any' 
 
 **In JavaScript:**
 ```js
@@ -25,6 +37,10 @@ name = 27; // ✅ Allowed in JS
 
 **In TypeScript:**
 ```ts
+let age; // it will be any type. So, it can assign in any type.
+age = 12;  ✅ Allowed 
+age = "123";  ✅ Allowed 
+
 let name = "Max"; // TypeScript infers type string
 name = 27; // ❌ Error: Type 'number' is not assignable to type 'string'
 ```
@@ -70,6 +86,7 @@ myRealAgeAny = "27"; // ✅ Allowed
 
 Arrays can hold multiple values of the same type:
 ```ts
+let emptyArray = []; // empty array will 'any' type like js. So, we need to annotated it when declare.
 let hobbies: string[] = ["Sports", "Cooking"];
 hobbies = [100]; // ❌ Error
 
@@ -82,8 +99,11 @@ Tuples are arrays with fixed types and order:
 ```ts
 let address: [string, number] = ["Main St", 99];
 address = [99, "Main St"]; // ❌ Error
-let tripleAdd: [number, String, number, string] = [45, "Bhurulia", 25, "Gazipur Sadar"];// ✅ Allowed
+let fullAddress: [number, String, number, string] = [45, "Bhurulia", 25, "Gazipur Sadar"];// ✅ Allowed
 ```
+* After compilation it will be a regular js array.
+* If we use ***fullAddress.*** we can use all functions and propertie of that type.
+* If we use ***fullAddress.push(1);*** no error will generate. **It is a gap of TS.** 
 ---
 ### Enums
 
@@ -132,6 +152,13 @@ Enums are converted into self-executing functions to map names to numbers.
 
 ---
 ### Types in Functions
+```ts
+//function render(doc) { // ❌ Error: will show an error. Because by default "noImplicitAny" : true; so we should explicity define it as 
+function render(doc : any) { 
+  console.log(doc);
+}
+```
+***To Prevent this type of error we can set noImplicitAny = false. But it will loose the Features of Type safety.***
 
 You can type arguments and return values:
 ```ts
