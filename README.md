@@ -46,7 +46,7 @@ let button = document.createElement('button');
 button.textContent = "Say Hello";
 button.onclick = function() {
     alert(greeter.greet());
-};
+}; ```
 
 Problem:
 This outputs Hello, [object Object] instead of throwing an error.
