@@ -6,9 +6,18 @@ It explains *why TypeScript exists*, *how it improves JavaScript*, and *how to s
 ---
 
 ## What is TypeScript?
+A programming language to address short commings of js.
+**Java Script** - Without Discipline
+**Type Script** - with Discipline
+
+Make on top of javascript with type chekcking.Every valid JavaScript file is also a valid TypeScript file, so you can gradually adopt it without rewriting your codebase. but ts  add some really cool features of js that help us build more robust and maintainable applications.
 
 JavaScript is the scripting language used in browsers to make websites interactive.  
 It supports features like constructor functions and prototypes, but it uses **dynamic typing**, meaning a variable’s type can change at runtime without any error.
+
+***Staticaly Typed*** - C++, Java, C#, TS -> here Type determined in compile time
+***Dynamically Typed*** - JavaScript, Python etc. -> Type determined in runtime
+
 
 **Example problem in JavaScript:**
 A function expecting a string might accidentally receive an object, and JavaScript will not complain.
@@ -71,6 +80,38 @@ class Greeter {
 
 Now, passing anything other than a string will cause a compile-time error, helping you catch bugs early.
 
+***TypeScript is more than just type checking.*** It enhances JavaScript in ways that **make development faster, safer, and more enjoyable.**
+
+### 🚀 Smarter Development
+
+Most modern code editors have excellent TypeScript support. This means they can:
+
+**Detect the type** of your variables automatically
+
+Provide **intelligent code completion**
+
+**Offer refactoring tools** that make large-scale changes safer and easier
+
+These features **boost productivity and reduce bugs** before your code even runs.
+
+### ✨ Clearer and More Concise Code
+
+TypeScript includes additional features that help you write cleaner, more maintainable code, making it easier to understand and collaborate on projects.
+
+### 🌍 Using Future JavaScript Today
+
+In JavaScript, different browsers may not implement all functions or features, which can lead to headaches.
+With TypeScript, we can safely use modern JavaScript features, knowing that TypeScript will handle compatibility and prevent runtime issues.
+
+### TypeScript Drawbacks
+**1.** Needs always compilation otherwise browser can't detect it.
+       ***.ts -> compiler -> .js***
+this process is called traspilation
+
+**2.** We need to added a bit more discipline when writing code.
+**3.** Can't attach to a html file.
+
+
 ### TypeScript Playground
 
 You can experiment with TypeScript online using the official playground:
@@ -129,10 +170,16 @@ Setting Up a TypeScript Project
 
 Creates a **package.json** file.
 
-Install a lightweight development server
+### Install and Configure a Lightweight Development Server
 
-**npm install lite-server --save-dev**
-configure **package.json** file as:
+We use lite-server to run a local development server with live-reload support.
+
+1. Install lite-server
+***npm install lite-server --save-dev***
+
+2. Configure package.json
+
+Update your ***package.json*** file as shown below:
 ```json
 {
   "name": "typescriptprac",
@@ -153,16 +200,26 @@ configure **package.json** file as:
     "lite-server": "^2.6.1"
   }
 }
-
 ```
+3. Run the Development Server
 
-### lite-server:
+Start the local server:
 
-Runs a local server
+***npm start***
 
-Automatically reloads the browser on changes
+4. Rebuild the Project
 
-Initialize TypeScript configuration
+Compile the TypeScript files:
+
+***npm run build***
+
+About lite-server
+
+Runs a local development server
+
+Automatically reloads the browser when files change
+
+### Initialize TypeScript configuration
 **tsc --init**
 
 
