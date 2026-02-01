@@ -52,7 +52,7 @@ button.onclick = function() {
 **Problem**:
 This outputs Hello, [object Object] instead of throwing an error.
 
-# How TypeScript helps
+### How TypeScript helps
 
 In TypeScript, you can enforce types:
 ```js
@@ -71,7 +71,7 @@ class Greeter {
 
 Now, passing anything other than a string will cause a compile-time error, helping you catch bugs early.
 
-# TypeScript Playground
+### TypeScript Playground
 
 You can experiment with TypeScript online using the official playground:
 
@@ -86,7 +86,7 @@ Compiled JavaScript output
 Errors in real time
 
 ## Installing TypeScript
-# Prerequisites
+### Prerequisites
 
 **Node.js** installed
 
@@ -123,7 +123,7 @@ In HTML files, always import the compiled .js file, not .ts.
 
 Setting Up a TypeScript Project
 
-#Initialize npm
+### Initialize npm
 **npm init**
 
 
@@ -150,7 +150,7 @@ Once this file exists, you can compile all TypeScript files by running:
 
 ***tsc***
 
-# Important tsconfig.json Options
+### Important tsconfig.json Options
 
 ***Some key configuration options:***
 
@@ -164,7 +164,7 @@ Once this file exists, you can compile all TypeScript files by running:
 
 **strict** – Enables strict type checking (recommended)
 
-# Why Modules Need a Server
+### Why Modules Need a Server
 
 When using modules and multiple files:
 
@@ -175,7 +175,7 @@ A local server (like light-server) is required
 This mimics real production environments
 
 ## Generics and Interfaces (Why They Matter)
-# Interfaces
+### Interfaces
 
 Define the structure of objects
 
@@ -183,7 +183,7 @@ Improve readability and consistency
 
 Help catch missing or incorrect properties
 
-# Generics
+### Generics
 
 Allow reusable, type-safe components
 
@@ -199,7 +199,7 @@ More scalable
 
 Less error-prone
 
-# Project Structure (Suggested)
+### Project Structure (Suggested)
 ```
 src/
  ├── basics/
