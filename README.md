@@ -200,6 +200,7 @@ More scalable
 Less error-prone
 
 # Project Structure (Suggested)
+```
 src/
  ├── basics/
  ├── interfaces/
@@ -208,5 +209,5 @@ src/
 dist/
 tsconfig.json
 package.json
-
+```
 
