@@ -49,13 +49,13 @@ button.onclick = function() {
 };
 ```
 
-Problem:
+**Problem**:
 This outputs Hello, [object Object] instead of throwing an error.
 
-How TypeScript helps
+# How TypeScript helps
 
 In TypeScript, you can enforce types:
-
+```js
 class Greeter {
     greeting: string;
 
@@ -67,17 +67,17 @@ class Greeter {
         return "Hello, " + this.greeting;
     }
 }
-
+```
 
 Now, passing anything other than a string will cause a compile-time error, helping you catch bugs early.
 
-TypeScript Playground
+# TypeScript Playground
 
 You can experiment with TypeScript online using the official playground:
 
 👉 https://www.typescriptlang.org/play
 
-It shows:
+*It shows:*
 
 TypeScript code
 
@@ -85,12 +85,12 @@ Compiled JavaScript output
 
 Errors in real time
 
-Installing TypeScript
-Prerequisites
+## Installing TypeScript
+# Prerequisites
 
-Node.js installed
+**Node.js** installed
 
-npm (comes with Node.js)
+**npm** (comes with Node.js)
 
 Install TypeScript globally
 
