@@ -247,6 +247,34 @@ Once this file exists, you can compile all TypeScript files by running:
 
 **strict** – Enables strict type checking (recommended)
 
+**removeComments** - Remove all comments in generated js file.
+
+**noEmitOnError** - It will prevent for generating js file when ts file contains error.
+
+**sourceMap** - Source map is a file that specifies how each line of our typeScript code maps to the generated code. when sourceMap = true, a file will generated after compilation.
+              ***.js.map -***  This is not for us to understand. **This is for Debugger.**
+              
+---
+### Create launch.json file
+"preLaunchTask" : "tsp : build - tsconfig.json" // outside "compilerOptions" 
+* All the spaces are matter here.
+
+preLaunchTask is used to compile TypeScript before debugging starts.
+
+TypeScript cannot run directly in Node or the browser. It must be compiled to JavaScript first.
+This tells VS Code:
+
+“Run the TypeScript build task before launching the debugger.”
+
+***Why it’s needed***
+
+* Ensures the latest .ts code is compiled
+
+* Prevents debugging outdated or missing .js files
+
+* Makes breakpoints and source maps work correctly
+
+
 ### Why Modules Need a Server
 
 When using modules and multiple files:
