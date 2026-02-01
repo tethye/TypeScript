@@ -175,6 +175,10 @@ let user = {
 };
 
 user.age = "27"; // ❌ Error
+user = {  // ❌ Error
+  a: "Max",  // ❌ Error Because property names are impotant in TS
+  b: 27  // ❌ Error
+};  // ❌ Error
 ```
 
 ***Explicit object type:***
