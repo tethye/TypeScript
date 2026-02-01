@@ -77,7 +77,7 @@ You can experiment with TypeScript online using the official playground:
 
 👉 https://www.typescriptlang.org/play
 
-*It shows:*
+**It shows:**
 
 TypeScript code
 
@@ -103,11 +103,11 @@ On Mac or Linux, you may need:
 
 Using TypeScript
 
-TypeScript files use the .ts extension
+TypeScript files use the **.ts** extension
 
-Browsers only understand JavaScript, so you must compile .ts → .js
+Browsers only understand JavaScript, so you must compile **.ts → .js**
 
-Compile a TypeScript  named script.ts
+Compile a TypeScript  named **script.ts**
 
 
 **tsc script.ts**
@@ -127,14 +127,36 @@ Setting Up a TypeScript Project
 **npm init**
 
 
-Creates a ** package.json** file.
+Creates a **package.json** file.
 
 Install a lightweight development server
 
-**npm install light-server --save-dev**
+**npm install lite-server --save-dev**
+configure **package.json** file as:
+```json
+{
+  "name": "typescriptprac",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "start": "lite-server"
+  },
+  "dependencies": {
+    "reflect-metadata": "^0.2.2"
+  },
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
 
+```
 
-light-server:
+### lite-server:
 
 Runs a local server
 
