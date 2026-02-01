@@ -148,34 +148,34 @@ Creates a **tsconfig.json** file.
 
 Once this file exists, you can compile all TypeScript files by running:
 
-tsc
+***tsc***
 
-Important tsconfig.json Options
+# Important tsconfig.json Options
 
-Some key configuration options:
+***Some key configuration options:***
 
-target – JavaScript version to compile to (e.g. ES5)
+**target** – JavaScript version to compile to (e.g. ES5)
 
-module – Module system (CommonJS, ES6, etc.)
+**module** – Module system (CommonJS, ES6, etc.)
 
-outDir – Folder for compiled JavaScript files
+**outDir** – Folder for compiled JavaScript files
 
-rootDir – Source folder for TypeScript files
+**rootDir** – Source folder for TypeScript files
 
-strict – Enables strict type checking (recommended)
+**strict** – Enables strict type checking (recommended)
 
-Why Modules Need a Server
+# Why Modules Need a Server
 
 When using modules and multiple files:
 
-Browsers block module loading via the file:// protocol
+Browsers block module loading via the ***file://*** protocol
 
 A local server (like light-server) is required
 
 This mimics real production environments
 
-Generics and Interfaces (Why They Matter)
-Interfaces
+## Generics and Interfaces (Why They Matter)
+# Interfaces
 
 Define the structure of objects
 
@@ -183,7 +183,7 @@ Improve readability and consistency
 
 Help catch missing or incorrect properties
 
-Generics
+# Generics
 
 Allow reusable, type-safe components
 
@@ -199,7 +199,7 @@ More scalable
 
 Less error-prone
 
-Project Structure (Suggested)
+# Project Structure (Suggested)
 src/
  ├── basics/
  ├── interfaces/
@@ -209,4 +209,3 @@ dist/
 tsconfig.json
 package.json
 
-document.body.appendChild(button);
