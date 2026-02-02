@@ -149,6 +149,33 @@ something = 42; // ✅ Allowed
 
 ⚠ Use sparingly to maintain safety.
 
+### Unknown Type
+* unknown represents a value whose type is not known at compile time.
+
+* It is similar to the any type, but much safer.
+
+* Unlike any, a value of type unknown cannot be used directly without type checking.
+
+* The unknown type forces you to verify the actual data type before performing operations.
+
+* Using any allows unrestricted operations without warnings, while unknown produces compile-time warnings until the type is checked.
+
+**Example: unknown vs any**
+```ts
+let valueAny: any = "Hello";
+let valueUnknown: unknown = "Hello";
+
+// Using 'any' — no error, but unsafe
+valueAny.toUpperCase(); // ✅ Allowed, but risky
+
+// Using 'unknown' — error without type check
+// valueUnknown.toUpperCase(); ❌ Error
+
+// Safe usage with 'unknown'
+if (typeof valueUnknown === "string") {
+  valueUnknown.toUpperCase(); // ✅ Safe and allowed
+}
+```
 ---
 ## Understanding the Generated JavaScript
 
@@ -476,8 +503,8 @@ Literal types are useful when only a fixed set of values is allowed.
 
 ---
 ### The never Type
-
-never is used for functions that never return:
+A value that never occurs, A function that never rerturns and a path to impossible to reach.
+*never is used for functions that never return:*
 ```ts
 function throwError(message: string): never {
   throw new Error(message);
@@ -489,6 +516,11 @@ function infiniteLoop(): never {
 ```
 
 Different from void (void functions finish execution but return nothing).
+
+**Why ***never*** useful?**
+* Catches logics error at Compile Time.
+* Forces to handle all cases
+* Helps in writting safe and predictable code.
 
 ---
 ### Nullable Types
@@ -510,6 +542,166 @@ canNumNUllUnd = undefined; // ✅ Allowed
 * Variables initialized with null are inferred as null.
 
 * Use union types for safe null handling.
+
+---
+### Optional Chaining (?.)
+
+* When working with values that can be null or undefined, TypeScript normally requires checks to avoid runtime errors or warnings.
+  
+* Optional chaining provides a safe and concise way to access properties or call methods without explicitly checking for null or undefined.
+```ts
+const canNumNullUnd: number | null | undefined = null;
+
+console.log(canNumNullUnd?.toString());
+```
+* If canNumNullUnd is null or undefined, this expression safely returns undefined instead of throwing an error.
+
+**Optional property with a method**
+
+* If an object property is optional and you want to call a method on it, you can also use optional chaining.
+```ts
+interface Customer {
+  birthday?: Date;
+}
+
+const customer: Customer = {};
+
+console.log(customer.birthday?.getFullYear());
+```
+* If birthday is undefined, the method is not called and no error occurs.
+
+**Optional chaining with arrays**
+
+* Optional chaining is commonly used with arrays, since array elements may be null, undefined, or missing.
+```ts
+const customers: Customer[] | null = null;
+
+console.log(customers?.[0]);
+```
+* If customers is null or undefined, this safely returns undefined.
+  
+---
+
+### Nullish Coalescing Operator (??)
+
+* The nullish coalescing operator is used to provide a default value only when a variable is null or undefined.
+```ts
+let userName: string | null = null;
+
+let displayName = userName ?? "Guest";
+console.log(displayName); // "Guest"
+```
+
+### Difference between || and ??
+```ts
+let value = 0;
+
+let result1 = value || 100; // 100
+let result2 = value ?? 100; // 0
+```
+**Explanation:**
+
+**'||'** (logical OR) treats all falsy values (0, "", false, null, undefined) as false.
+
+**'??'** only treats null and undefined as invalid.
+
+*So ?? is safer when 0, false, or empty strings are valid values.*
+
+### Difference between ?. and ??
+
+**?.** Optional chaining
+→ Safely access a property or call a method without throwing an error.
+
+**??** Nullish coalescing
+→ Provide a default value when the result is null or undefined.
+
+**Example together**
+```ts
+const customerName = customer?.name ?? "Unknown";
+```
+
+* ?. safely accesses customer.name
+
+* ?? provides "Unknown" if the result is null or undefined
+---
+### Type Assertions
+
+Type assertions tell the TypeScript compiler:
+
+***“Trust me, I know the type of this value.”***
+
+* They are used only at compile time and do not change the actual data type at runtime.
+
+**⚠️ Important:** *Type assertions are the developer’s responsibility. By using them, you are essentially telling TypeScript to stop checking — incorrect assertions can cause runtime bugs.*
+
+**Ways to Write Type Assertions**
+
+1. Using as syntax (✅ Recommended)
+
+* This is the preferred and safest style, especially when working with JSX or modern TypeScript.
+```ts
+let someValue: unknown = "hello ts";
+let strLen: number = (someValue as string).length;
+```
+2. Using angle brackets < > (❌ Not recommended in JSX)
+```ts
+let someValue: unknown = "hello ts";
+let strLen: number = (<string>someValue).length;
+```
+
+* ❗ This syntax cannot be used in .tsx files because it conflicts with JSX syntax.
+That’s why the ***as*** keyword is recommended.
+
+### Why Use Type Assertions?
+
+Sometimes TypeScript cannot automatically infer a specific type, even when you know it.
+```ts
+let input = document.getElementById("user");
+```
+Here, TypeScript infers the type as:
+```ts
+HTMLElement | null
+```
+* *But not all HTMLElements have a value property — only input elements do.*
+  
+So we assert the type:
+```ts
+let input = document.getElementById("user") as HTMLInputElement;
+```
+Now TypeScript allows:
+```
+console.log(input.value);
+```
+
+**✅ This helps the compiler**
+❌ It does not change runtime behavior
+❌ It does not perform any validation
+
+***Type Assertion Does NOT Convert Types***
+
+* A common mistake is thinking type assertions transform values.
+```ts
+let num = document.getElementById("number")!.value as number;
+
+console.log(num + 10);
+```
+**Output:**
+
+**2510**
+
+***Why?***
+
+* value is always a string
+
+* **as** number only tells TypeScript to assume it’s a number
+
+* JavaScript still treats it as a string at runtime
+
+**✅ Correct way:**
+```ts
+let num = Number(document.getElementById("number")!.value);
+console.log(num + 10); // 35
+```
 
 ---
 ### Module Exercise
