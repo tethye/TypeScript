@@ -243,7 +243,8 @@ greet("Bob", "Mr.");     // Hello Mr. Bob
 
 You can define a function type:
 ```ts
-let func = multiply; // ✅ Correct
+let func;
+func = multiply; // ✅ Correct
 func = logMessage; // ✅ Correct
 
 let myMultiply: (val1: number, val2: number) => number;
