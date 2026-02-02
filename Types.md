@@ -123,6 +123,21 @@ enum Status {
   Rejected  // 5
 }
 ```
+If we declare enum as const enum, compiler wil generate more optimize code in js file.
+```ts
+const enum Status {
+  Pending = 3,
+  Approved, // 4
+  Rejected  // 5
+}
+console.log(Status.Approved);
+```
+***in JS***
+```js
+"use strict";
+console.log(4 /* Status.Approved */);
+```
+
 ---
 ### The any Type
 
@@ -174,6 +189,54 @@ function logMessage(message: string): void {
 * void = function returns nothing.
 
 * Return type mismatch triggers compile errors.
+  
+* ***If function doesn't have any return type, then ts compiler inferred the return type.***
+**
+* If there are any unused parameters in function and we need a warning for this, enable **"noUnsedParameters"** in tsConfig.json file.
+
+* If not all code path has return statement then compiler will not throw error. Because JS by default returns undefined.
+  **to get this error in compiler time set "noImplicitReturns" : true in tsConfig.json**
+```js
+function calc (inc : number) {
+  if(inc>50000) return inc*12;
+}
+```
+* If a local variable is unsed, and wants to get a warning for that enable **"noUnusedLocals"**
+
+* In TypeScript, if a function defines two parameters, you must pass exactly two arguments when calling it.
+but in JavaScript, functions are more flexible and do not enforce the number of arguments.
+
+* If a parameter is optional in TypeScript, you can mark it using ***?***.
+
+***Optional Parameters (?)***
+
+An optional parameter may be **undefined**, so you usually need to handle that case.
+```ts
+function greet(name: string, title?: string) {
+  const finalTitle = title || "Guest";
+  console.log(`Hello ${finalTitle} ${name}`);
+}
+
+greet("Alice");          // Hello Guest Alice
+greet("Bob", "Mr.");     // Hello Mr. Bob
+```
+
+Here, ***|| is used as a fallback trick*** to handle optional values.
+
+***Best Practice: Default Parameters ✅***
+
+* Instead of using ||, the recommended approach is to assign a default value directly in the function parameters.
+  
+```ts
+function greet(name: string, title: string = "Guest") {
+  console.log(`Hello ${title} ${name}`);
+}
+
+greet("Alice");          // Hello Guest Alice
+greet("Bob", "Mr.");     // Hello Mr. Bob
+```
+
+* Default parameters are clearer, safer, and avoid unexpected behavior with falsy values like "" or 0.
 
 ---
 ### Functions as Types
@@ -193,8 +256,20 @@ Argument names do not matter; only types and return type are important.
 
 ---
 ### Objects and Types
+* In JavaScript, objects are dynamic, which means you can add or remove properties at any time.
+```js
+const user = { name: "Alice" };
+user.age = 25; // ✅ Allowed in JavaScript
+```
 
-TypeScript infers object structure:
+* In TypeScript, object shapes are strictly enforced. You cannot add arbitrary properties that are not defined in the object’s type.
+```ts
+const user: { name: string } = { name: "Alice" };
+user.age = 25; // ❌ Error: Property 'age' does not exist
+```
+
+* This helps catch bugs at compile time and makes the code more predictable.
+* TypeScript infers object structure:
 ```ts
 let user = {
   name: "Max",
@@ -206,8 +281,8 @@ user = {  // ❌ Error
   a: "Max",  // ❌ Error Because property names are impotant in TS
   b: 27  // ❌ Error
 };  // ❌ Error
-```
 
+```
 ***Explicit object type:***
 ```ts
 let userExplicit: { name: string; age: number } = {
@@ -215,7 +290,29 @@ let userExplicit: { name: string; age: number } = {
   age: 27
 };
 ```
----
+**Optional Properties (?)**
+In TypeScript, object properties can be marked as optional using ***?***.
+Optional properties ***do not need to be initialized*** when the object is created.
+```ts
+type User = {
+  name: string;
+  age?: number;
+};
+
+const user1: User = { name: "Alice" };        // ✅ valid
+const user2: User = { name: "Bob", age: 30 }; // ✅ valid
+```
+
+* Optional properties are useful when certain data may or may not be present.
+
+***Extra Tip 🧠***
+
+* Even though optional properties are allowed, you should still check for their existence before using them:
+```ts
+if (user2.age !== undefined) {
+  console.log(user2.age);
+}
+```
 
 ### Complex Objects
 
@@ -228,9 +325,14 @@ let complex: { data: number[]; output: (all: boolean) => number[] } = {
   }
 };
 ```
-### Type Aliases
+---
 
-Type aliases simplify reusing complex types:
+## Advance Type
+### Type Aliases
+* When creating multiple objects with the same structure, rewriting the full object shape each time violates the DRY (Don’t Repeat Yourself) principle.
+To avoid this, TypeScript provides Type Aliases, which let us define an object’s shape in one place and reuse it everywhere.
+
+* Type aliases simplify reusing complex types:
 ```ts
 type BankAccount = { money: number; deposit: (value: number) => void };
 type Person = { name: string; bankAccount: BankAccount; hobbies: string[] };
@@ -248,28 +350,129 @@ let myself: Person = {
   hobbies: ["Sports", "Cooking"]
 };
 ```
----
-### Union Types
+*This makes the code easier to maintain and more consistent.
 
-Allow multiple types for a variable:
+---
+### Union Type (|)
+* Union types allow a variable or parameter to accept more than one type.
+
 ```ts
 let course: string | number = "React";
 course = 123; // ✅ Allowed
 course = true; // ❌ Error
-```
----
-### Runtime Type Checking
-
-Check types during runtime using typeof:
-```ts
-function printValue(value: number | string) {
-  if (typeof value === "string") {
-    console.log("String: " + value);
+//Runtime Type Checking
+function kgToLbs(weight: number | string): number {
+  if (typeof weight === "number") {
+    // weight is treated as number here.
+    return weight * 2.2;
   } else {
-    console.log("Number: " + value);
+    // weight is treated as string here
+    return parseInt(weight) * 2.2;
   }
 }
 ```
+**User-defined types Union:**
+
+Example 1:
+```ts
+type Admin = {
+  role: "admin";
+  permissions: string[];
+};
+
+type Customer = {
+  role: "customer";
+  purchases: number;
+};
+
+type User = Admin | Customer;
+//Runtime Type Checking
+function printUser(user: User) {
+  if (user.role === "admin") {
+    console.log(user.permissions);
+  } else {
+    console.log(user.purchases);
+  }
+}
+```
+Example 2:
+```ts
+type A = {
+  foo(): void;
+};
+
+type B = {
+  bar(): void;
+};
+
+type C = A | B;
+
+const obj1: C = {
+  foo() {
+    console.log("foo");
+  }
+}; // ✅ valid
+
+const obj2: C = {
+  bar() {
+    console.log("bar");
+  }
+}; // ✅ valid
+
+const obj3: C = {
+  foo() {},
+  bar() {}
+}; // ✅ এটাও valid
+
+```
+
+### Intersection Types (&)
+
+* Intersection types combine multiple types into one, requiring all properties from each type.
+```ts
+type Draggable = {
+  drag: () => void;
+};
+
+type Resizable = {
+  resize: () => void;
+};
+
+type UIWidget = Draggable & Resizable;
+
+let textBar: UIWidget = {
+  drag: () => {
+    console.log("Dragging");
+  },
+  resize: () => {
+    console.log("Resizing");
+  }
+};
+```
+
+***Here, textBar must implement both drag and resize.***
+
+---
+
+### Literal Types
+
+* Literal types restrict values to specific exact values, improving type safety.
+```ts
+let quantity: 50 = 50;
+// quantity = 100 ❌ not allowed
+
+let quantity: 50 | 100 = 50;
+// can also assign 100
+
+type Quantity = 50 | 100 | 150 | 200;
+let quan: Quantity = 100;
+// cannot assign any value other than 50, 100, 150, 200
+
+let metrics: "cm" | "m" | "km" = "cm";
+```
+
+Literal types are useful when only a fixed set of values is allowed.
+
 ---
 ### The never Type
 
@@ -289,7 +492,7 @@ Different from void (void functions finish execution but return nothing).
 ---
 ### Nullable Types
 
-With strictNullChecks: true:
+With **strictNullChecks: true** (by default true when "strict" :true) :
 ```ts
 let canNull = null // means canNull: null . here null is behave like a type
 canNull = 12; ❌ Error Can't assign value without null
@@ -297,6 +500,10 @@ canNull = 12; ❌ Error Can't assign value without null
 let canBeNull: number | null = null; // ✅ Allowed
 canBeNull = 12; // ✅ Allowed
 canBeNull = undefined; // ❌ Error
+
+let canNumNUllUnd : number | null | undefined;
+canNumNUllUnd = 12; // ✅ Allowed
+canNumNUllUnd = undefined; // ✅ Allowed
 ```
 
 * Variables initialized with null are inferred as null.
