@@ -699,7 +699,7 @@ console.log(num + 10);
 
 **✅ Correct way:**
 ```ts
-let num = Number(document.getElementById("number")!.value);
+let num = Number(document.getElementById("number")?.value);
 console.log(num + 10); // 35
 ```
 
