@@ -195,7 +195,7 @@ Update your ***package.json*** file as shown below:
   "main": "index.js",
   "scripts": {
     "build": "tsc --project tsconfig.json",
-    "start": "lite-server"
+    "start": "lite-server" // for ts compile and js run "tsc --watch & lite-server"
   },
   "dependencies": {
     "reflect-metadata": "^0.2.2"
