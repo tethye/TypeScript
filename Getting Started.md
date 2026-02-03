@@ -288,27 +288,27 @@ This mimics real production environments
 ## Generics and Interfaces (Why They Matter)
 ### Interfaces
 
-Define the structure of objects
+* Define the structure of objects
 
-Improve readability and consistency
+* Improve readability and consistency
 
-Help catch missing or incorrect properties
+* Help catch missing or incorrect properties
 
 ### Generics
 
-Allow reusable, type-safe components
+* Allow reusable, type-safe components
 
-Prevent duplication
+* Prevent duplication
 
-Maintain flexibility without losing type safety
+* Maintain flexibility without losing type safety
 
-Together, they make TypeScript code:
+*Together, they make TypeScript code:*
 
-Easier to maintain
+* Easier to maintain
 
-More scalable
+* More scalable
 
-Less error-prone
+* Less error-prone
 
 ### Project Structure (Suggested)
 ```
@@ -321,4 +321,53 @@ dist/
 tsconfig.json
 package.json
 ```
+
+---
+# TypeScript - Quick Q&A
+
+1. **TypeScript Introduction – What is TypeScript?**  
+A superset of JavaScript that adds static typing to catch errors early and improve code maintainability.
+
+2. **Why TypeScript – Why do we need TS over JS?**  
+To prevent runtime errors, improve code quality, and make large-scale projects easier to manage.
+
+3. **JavaScript vs TypeScript – Key differences**  
+JS is dynamically typed; TS is statically typed. TS must be compiled, JS runs directly in browsers.
+
+4. **Superset Concept – What does TS as a superset mean?**  
+Every valid JavaScript file is valid TypeScript. TS adds extra features on top of JS.
+
+5. **Typing System – Static vs Dynamic typing**  
+Static typing (TS) checks types at compile-time; dynamic typing (JS) checks at runtime.
+
+6. **Type Safety – What problem does TS solve?**  
+Catches type-related errors before code runs, reducing bugs.
+
+7. **Compile Time vs Run Time – When are types checked?**  
+TS checks types at compile-time; JS checks at run-time.
+
+8. **Compilation – Why convert .ts to .js?**  
+Browsers only understand JavaScript, so TS must be converted to JS to run.
+
+9. **Transpilation – What is transpilation?**  
+The process of converting TS code into JS code.
+
+10. **Core Features – Main features of TypeScript**  
+Static typing, interfaces, generics, modern JS support, better IDE tooling.
+
+11. **Interfaces – Why use interfaces?**  
+To define object structure, improve readability, and catch errors.
+
+12. **Generics – Why use generics?**  
+To create reusable, type-safe components without losing flexibility.
+
+13. **tsconfig.json – Why is it important?**  
+Configures how TypeScript compiles code, including target version, module type, and strictness.
+
+14. **TypeScript Drawbacks – Limitations of TS**  
+Requires compilation, extra setup, more disciplined coding, and cannot run directly in browsers.
+
+15. **Project Structure – Why structure matters**  
+Organized folders (src, dist, etc.) make code easier to maintain and scale.
+
 
