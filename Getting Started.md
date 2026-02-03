@@ -156,7 +156,7 @@ sudo npm install -g typescript**
 * Compile a TypeScript  named **script.ts**
 
 ```bash
-tsc script.ts**
+tsc script.ts
 ```
 
 This generates: 'script.js'
