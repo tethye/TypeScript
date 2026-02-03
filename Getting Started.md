@@ -167,7 +167,7 @@ This generates: 'script.js'
 
 ### Initialize npm
 ```bash
-npm init**
+npm init
 ```
 
 Creates a **package.json** file.
@@ -209,30 +209,35 @@ Update your ***package.json*** file as shown below:
 
 Start the local server:
 
-***npm start***
+```bash
+npm start
+```
 
 4. Rebuild the Project
 
 Compile the TypeScript files:
 
-***npm run build***
+```bash
+npm run build
+```
 
-About lite-server
+**About lite-server**
 
-Runs a local development server
+* Runs a local development server
 
-Automatically reloads the browser when files change
+* Automatically reloads the browser when files change
 
 ### Initialize TypeScript configuration
-**tsc --init**
-
+```bash
+tsc --init
+```
 
 Creates a **tsconfig.json** file.
 
 Once this file exists, you can compile all TypeScript files by running:
-
-***tsc***
-
+``bash
+tsc
+```
 ### Important tsconfig.json Options
 
 ***Some key configuration options:***
