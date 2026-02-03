@@ -138,39 +138,37 @@ Errors in real time
 **npm** (comes with Node.js)
 
 Install TypeScript globally
-
-**npm install -g typescript**
-
+```bash
+npm install -g typescript**
+```
 
 On Mac or Linux, you may need:
+```bash
+sudo npm install -g typescript**
+```
 
-**sudo npm install -g typescript**
+**Using TypeScript:**
 
-Using TypeScript
+* TypeScript files use the **.ts** extension
 
-TypeScript files use the **.ts** extension
+* Browsers only understand JavaScript, so you must compile **.ts → .js**
 
-Browsers only understand JavaScript, so you must compile **.ts → .js**
+* Compile a TypeScript  named **script.ts**
 
-Compile a TypeScript  named **script.ts**
+```bash
+tsc script.ts**
+```
 
+This generates: 'script.js'
 
-**tsc script.ts**
+* In HTML files, always import the compiled .js file, not .ts.
 
-
-This generates:
-
-script.js
-
-Important
-
-In HTML files, always import the compiled .js file, not .ts.
-
-Setting Up a TypeScript Project
+**Setting Up a TypeScript Project**
 
 ### Initialize npm
-**npm init**
-
+```bash
+npm init**
+```
 
 Creates a **package.json** file.
 
@@ -196,8 +194,8 @@ Update your ***package.json*** file as shown below:
   "main": "index.js",
   "scripts": {
     "build": "tsc --project tsconfig.json",
-    "start": "lite-server" // for ts compile and js run "concurrently \"tsc --watch\" \"lite-server\"" install concurrently first 'npm install --save-dev concurrently
-'
+    "start": "lite-server" 
+    // for ts compile and js run "concurrently \"tsc --watch\" \"lite-server\"". Install concurrently first 'npm install --save-dev concurrently'
   },
   "dependencies": {
     "reflect-metadata": "^0.2.2"
