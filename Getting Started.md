@@ -179,8 +179,9 @@ Creates a **package.json** file.
 We use lite-server to run a local development server with live-reload support.
 
 1. Install lite-server
-***npm install lite-server --save-dev***
-
+```bash
+npm install lite-server --save-dev 
+```
 2. Configure package.json
 
 Update your ***package.json*** file as shown below:
@@ -195,7 +196,8 @@ Update your ***package.json*** file as shown below:
   "main": "index.js",
   "scripts": {
     "build": "tsc --project tsconfig.json",
-    "start": "lite-server" // for ts compile and js run "tsc --watch & lite-server"
+    "start": "lite-server" // for ts compile and js run "concurrently \"tsc --watch\" \"lite-server\"" install concurrently first 'npm install --save-dev concurrently
+'
   },
   "dependencies": {
     "reflect-metadata": "^0.2.2"
