@@ -139,12 +139,12 @@ Errors in real time
 
 Install TypeScript globally
 ```bash
-npm install -g typescript**
+npm install -g typescript
 ```
 
 On Mac or Linux, you may need:
 ```bash
-sudo npm install -g typescript**
+sudo npm install -g typescript
 ```
 
 **Using TypeScript:**
@@ -235,7 +235,7 @@ tsc --init
 Creates a **tsconfig.json** file.
 
 Once this file exists, you can compile all TypeScript files by running:
-``bash
+```bash
 tsc
 ```
 ### Important tsconfig.json Options
