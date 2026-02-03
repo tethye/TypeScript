@@ -753,3 +753,70 @@ const myself: Person = {
 * Enable strictNullChecks to prevent null/undefined bugs.
 
 * Prefer explicit types for complex structures, optional for simple variables.
+
+---
+## Basics - Q&A
+
+1. **Type Basics – What are basic types?**  
+number, string, boolean, null, undefined, array, tuple, enum, any, unknown.
+
+2. **Type Inference – How does TS detect types?**  
+TS infers type from initial value; uninitialized variables default to `any`.
+
+3. **Explicit Types – How to assign types manually?**  
+Use `let myVar: number` or `string[]`, etc., for stricter type checking.
+
+4. **Arrays – How are arrays typed?**  
+`let arr: string[] = ["a","b"];` only allows strings; `any[]` allows any type.
+
+5. **Tuples – What is a tuple?**  
+Fixed-length array with specified types and order: `[string, number]`.
+
+6. **Enums – What are enums?**  
+Named constants mapping to numbers; can use `const enum` for optimized JS.
+
+7. **Any & Unknown – Difference?**  
+`any` disables type checks; `unknown` is safer, requires type checking first.
+
+8. **Functions – How to type functions?**  
+Define argument and return types:  
+`function multiply(a: number, b: number): number`.
+
+9. **Optional & Default Parameters – How to handle?**  
+Use `?` for optional: `title?: string`; default: `title: string = "Guest"`.
+
+10. **Objects – How are objects typed?**  
+Define property types:  
+`const user: { name: string; age: number } = {...}`; optional with `?`.
+
+11. **Type Aliases – What are type aliases?**  
+Reusable type definitions:  
+`type Person = { name: string; age: number }`.
+
+12. **Union & Intersection Types – Difference?**  
+Union `|` allows multiple types; Intersection `&` combines types, all properties required.
+
+13. **Literal & Never Types – Use cases?**  
+Literal: restrict exact values; Never: function never returns, ensures safety.
+
+14. **Nullable Types – How to handle null/undefined?**  
+Use `strictNullChecks` and union types: `number | null | undefined`.
+
+15. **Optional Chaining & Nullish Coalescing – ?. and ??**  
+`?.` safely accesses properties; `??` provides default if null/undefined.
+
+16. **Type Assertions – What is type assertion?**  
+Tell TS the type of a value: `let val = someVal as string`; does not convert runtime type.
+
+17. **Modules – How to type JS objects in TS?**  
+Define types for structures: `type BankAccount = {...}; const bankAccount: BankAccount`.
+
+18. **Type Safety – How does TS prevent runtime errors?**  
+By enforcing static typing, catching type mismatches at compile time.
+
+19. **Compilation – How does TS code run in browsers?**  
+TS is compiled (transpiled) to JS; browsers only execute JS code.
+
+20. **Best Practices – Key tips**  
+Use type aliases, explicit types, never, strict null checks, optional only when needed.
+
