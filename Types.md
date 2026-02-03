@@ -26,7 +26,7 @@ TypeScript's most important feature is types.
 | undefined | tuple |
 | object |  |
 
-* TypeScript compiler can detect variable based on their values like 123-456-789, 123,456,789, 123 456 789 detect as a number
+* TypeScript compiler can detect variable based on their values like 123-456-789 detect as a number
 * If we don't initialize variable, it's type will be 'any' 
 
 **In JavaScript:**
