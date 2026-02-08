@@ -78,7 +78,7 @@ userName = 30; // ❌ Type error
 
 To change compiler behavior, use a tsconfig.json file.
 
-Basic tsconfig.json
+Basic **tsconfig.json**
 ```json
 {
   "compilerOptions": {
@@ -89,7 +89,7 @@ Basic tsconfig.json
 }
 ```
 
-Prevent Emitting JS on Errors
+Prevent Emitting JS on Errors:
 ```json
 {
   "compilerOptions": {
