@@ -4,21 +4,6 @@ This module explains how the **TypeScript compiler (TSC)** works, how TypeScript
 
 ---
 
-## Table of Contents
-
-1. Introduction to the TypeScript Compiler
-2. How TypeScript Code Gets Compiled
-3. Compiler Behavior on Errors
-4. Debugging with Source Maps
-5. Avoiding Implicit `any`
-6. More Useful Compiler Options
-7. Compiler Improvements (TypeScript 2.0+)
-8. Common CLI Commands
-9. Module Summary
-10. Further Reading
-
----
-
 ## 1. Introduction to the TypeScript Compiler
 
 TypeScript is **not executed directly** by browsers or Node.js.  
