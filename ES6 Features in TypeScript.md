@@ -268,6 +268,48 @@ These are not covered deeply, but good to know:
 📌 Learn these in a dedicated ES6 course.
 
 ---
+## Differences
+### 1️⃣ concat vs join (Array methods)
+**🔹 concat**
+
+* Purpose: combine arrays (or values) → returns a new array
+
+```ts
+const a = [1, 2];
+const b = [3, 4];
+
+const result = a.concat(b);
+console.log(result); // [1, 2, 3, 4]
+```
+
+- ✔ returns Array
+- ✔ does not mutate original arrays
+- ✔ works with arrays or single values
+
+```ts
+a.concat(5); // [1, 2, 5]
+```
+
+**🔹 join**
+
+* Purpose: convert array → string
+
+```ts
+const a = [1, 2, 3];
+
+const result = a.join("-");
+console.log(result); // "1-2-3"
+```
+
+- ✔ returns string
+- ✔ does not mutate array
+- ✔ separator is optional (default is ",")
+  
+```ts
+a.join();   // "1,2,3"
+a.join(""); // "123"
+```
+---
 
 ## Exercises – Sample Solutions
 ### Exercise 1: Arrow Function
