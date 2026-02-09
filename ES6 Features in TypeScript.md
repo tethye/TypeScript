@@ -172,7 +172,7 @@ console.log(newArray);
 const makeArray = (...args: number[]): number[] => {
   return args;
 };
-
+//console.log([1,2,3]) ❌ This will throw an Error
 console.log(makeArray(1, 2, 6)); // [1, 2, 6]
 ```
 
