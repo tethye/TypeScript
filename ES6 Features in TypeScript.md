@@ -302,7 +302,7 @@ console.log(result); // "1-2-3"
 ```
 
 - ✔ returns string
-- ✔ does not mutate array
+- ✔ does not *mutate* array
 - ✔ separator is optional (default is ",")
   
 ```ts
