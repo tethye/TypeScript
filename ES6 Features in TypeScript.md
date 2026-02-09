@@ -172,8 +172,12 @@ console.log(newArray);
 const makeArray = (...args: number[]): number[] => {
   return args;
 };
-//console.log([1,2,3]) ❌ This will throw an Error
-console.log(makeArray(1, 2, 6)); // [1, 2, 6]
+// console.log(makeArray([1,2,3]));  // ❌ This will throw an Error
+ console.log(makeArray(1, 2, 6)); // [1, 2, 6]
+
+let args = [1,2,3,4,5,6];
+// console.log(makeArray(args)); // ❌ This will throw an Error
+console.log(makeArray(...args));
 ```
 
 ***With Other Parameters***
