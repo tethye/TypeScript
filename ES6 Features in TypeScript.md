@@ -165,7 +165,9 @@ console.log(newArray);
 
 ## Rest Operator (...)
 ### Value List → Array
-** Rest Operator must be in last in parameter list**. Otherwise compiler error will thrown.
+
+**Rest Operator must be in last in parameter list**. Otherwise compiler error will thrown.
+
 ```ts
 const makeArray = (...args: number[]): number[] => {
   return args;
