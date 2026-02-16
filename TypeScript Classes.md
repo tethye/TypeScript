@@ -1,0 +1,479 @@
+### 1️⃣ Introduction to Classes
+TypeScript builds upon **ES6 (ECMAScript 2015)** features like classes introduced in **ECMAScript 2015**.
+A class is a **blueprint** for creating objects.
+It defines:
+
+* Properties (data)
+
+* Methods (functions)
+
+* Rules for object creation
+
+***Why Use Classes?***
+
+* Organize code better
+
+* Reuse logic
+
+* Enable inheritance
+
+* Enforce access control
+
+* Make code more maintainable
+
+
+### 2️⃣ Creating Classes & Properties
+Basic Syntax
+```ts
+class Person {
+    name: string;
+}
+```
+*This defines a class Person with a property name.*
+
+**Access Modifiers**
+
+| Modifier            | Accessible Where?              |
+|---------------------|--------------------------------|
+| public (default)    | Everywhere                     |
+| private             | Only inside the class          |
+| protected           | Inside class + subclasses      |
+
+
+Example
+
+```ts
+class Person {
+    public name: string;
+    private type: string;
+    protected age: number;
+}
+```
+
+**What This Means**
+
+* name → accessible anywhere
+
+* type → only inside Person
+
+* age → inside Person + child classes
+
+
+
+### 3️⃣ Constructors & Parameter Properties
+A ***constructor*** runs when an **object is created.**
+
+```ts
+class Person {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+}
+```
+
+**🔥 Shortcut: Parameter Properties**
+TypeScript allows this:
+```ts
+class Person {
+    constructor(public username: string) {}
+}
+```
+
+This automatically:
+
+* Creates a public property username
+
+* Assigns the constructor value to it
+
+
+Equivalent to:
+
+```ts
+class Person {
+    public username: string;
+
+    constructor(username: string) {
+        this.username = username;
+    }
+}
+```
+
+### 4️⃣ Using the Class (Instantiation)
+```ts
+const person = new Person("Max");
+console.log(person.username);
+```
+
+**The new keyword:**
+* Creates an object
+
+* Calls the constructor
+
+
+### 5️⃣ Class Methods
+**Methods are functions** inside classes.
+
+```ts
+class Person {
+    age: number = 30;
+
+    printAge() {
+        console.log(this.age);
+    }
+}
+``
+**Call** method:
+```ts
+person.printAge();
+```
+
+**Private** Methods
+
+```ts
+class Person {
+    private setType(type: string) {
+        console.log(type);
+    }
+}
+```
+
+*Cannot be accessed outside:*
+```ts
+person.setType("cool"); // ❌ Error
+```
+
+### 6️⃣ Inheritance
+
+Inheritance allows one class to extend another.
+```ts
+class Person {
+    constructor(public name: string) {}
+}
+```
+
+**Extend the Class**
+```ts
+class Max extends Person {}
+```
+
+**Max inherits:**
+
+
+* All public properties
+
+* All protected properties
+
+* All public methods
+
+
+
+### 7️⃣ Constructors & super()
+If a child class defines its own constructor, it must call **super()**.
+
+```ts
+class Max extends Person {
+    constructor(username: string) {
+        super("Max");
+    }
+}
+```
+
+***Why super()?***
+
+* It calls the parent constructor
+
+* Required before using this
+
+**Accessing Protected Members**
+```ts
+class Person {
+    protected age: number = 25;
+}
+
+class Max extends Person {
+    changeAge() {
+        this.age = 31; // ✅ Allowed
+    }
+}
+```
+***Private members ❌ are NOT accessible in subclasses.***
+
+### 8️⃣ Getters & Setters
+Used to control access to properties.
+```ts
+class Plant {
+    private _species: string = "Default";
+
+    get species() {
+        return this._species;
+    }
+
+    set species(value: string) {
+        if (value.length > 3) {
+            this._species = value;
+        }
+    }
+}
+```
+
+**Usage**
+```ts
+const plant = new Plant();
+
+console.log(plant.species); // Default
+
+plant.species = "AB";       // Ignored
+plant.species = "Green";
+
+console.log(plant.species); // Green
+```
+
+**Notice:**
+
+* Called like properties
+
+* Not like methods
+
+
+### 9️⃣ Static Properties & Methods
+***Static members belong to the class — not instances.***
+
+Example
+```ts
+class Helpers {
+    static PI: number = 3.14;
+
+    static calcCircumference(diameter: number) {
+        return this.PI * diameter;
+    }
+}
+```
+
+**Usage**
+
+```ts
+console.log(Helpers.PI);
+console.log(Helpers.calcCircumference(10));
+```
+
+* No need for:
+```ts
+  new Helpers(); // ❌ Not required
+```
+
+### 🔟 Abstract Classes
+Abstract classes:
+
+* Cannot be instantiated
+
+* Must be extended
+
+* Can contain abstract methods
+
+
+Example
+
+```ts
+abstract class Project {
+    projectName: string = "Default";
+    budget: number = 1000;
+
+    calcBudget() {
+        return this.budget * 2;
+    }
+
+    abstract changeName(name: string): void;
+}
+```
+
+**Extending Abstract Class:**
+
+```ts
+class ITProject extends Project {
+    changeName(name: string) {
+        this.projectName = name;
+    }
+}
+```
+
+**Usage**
+
+```ts
+const project = new ITProject();
+project.changeName("Super IT Project");
+```
+* Cannot do:
+```ts
+new Project(); // ❌ Error
+```
+
+### 1️⃣1️⃣ Singleton Pattern (Private Constructor)
+**Singleton ensures:**
+
+* Only ONE instance exists
+
+Example
+```ts
+class OnlyOne {
+    private static instance: OnlyOne;
+
+    private constructor(public name: string) {}
+
+    static getInstance() {
+        if (!OnlyOne.instance) {
+            OnlyOne.instance = new OnlyOne("The Only One");
+        }
+        return OnlyOne.instance;
+    }
+}
+```
+
+**Usage**
+```ts
+const right = OnlyOne.getInstance();
+```
+* Cannot use:
+```ts
+new OnlyOne(); // ❌ Error
+```
+
+
+### 1️⃣2️⃣ Readonly Properties
+Prevents modification after initialization.
+
+```ts
+class Car {
+    readonly name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+}
+```
+
+
+Cannot modify:
+car.name = "BMW"; // ❌ Error
+
+
+### 1️⃣3️⃣ Practical Exercises
+
+* **Exercise 1: Basic Class**
+```ts
+class Car {
+    acceleration: number = 0;
+
+    constructor(public name: string) {}
+
+    honk() {
+        console.log("Toooooot!");
+    }
+
+    accelerate(speed: number) {
+        this.acceleration += speed;
+    }
+}
+```
+
+* **Exercise 2: Inheritance**
+
+```ts
+class BaseObject {
+    width: number = 0;
+    length: number = 0;
+}
+
+class Rectangle extends BaseObject {
+    calcSize() {
+        return this.width * this.length;
+    }
+}
+```
+
+* **Exercise 3: Getters & Setters**
+
+```ts
+class Person {
+    private _firstName: string = "";
+
+    get firstName() {
+        return this._firstName;
+    }
+
+    set firstName(value: string) {
+        if (value.length > 3) {
+            this._firstName = value;
+        }
+    }
+}
+```
+
+### 🧠 Advanced Concepts (Added for Completeness)
+**Method Overriding**
+
+```ts
+class Animal {
+    makeSound() {
+        console.log("Animal sound");
+    }
+}
+
+class Dog extends Animal {
+    makeSound() {
+        console.log("Bark");
+    }
+}
+```
+
+**readonly vs private**
+
+| Feature              | readonly | private |
+|----------------------|----------|---------|
+| Read outside?        | ✅       | ❌      |
+| Write outside?       | ❌       | ❌      |
+| Access inside class? | ✅       | ✅      |
+
+
+**protected vs private**
+
+| Feature              | protected | private |
+|----------------------|-----------|---------|
+| Access in subclass   | ✅        | ❌      |
+| Access outside       | ❌        | ❌      |
+
+
+**📌 Best Practices**
+
+- ✔ Use `private` by default  
+- ✔ Use `protected` when designing for inheritance  
+- ✔ Prefer `readonly` for immutable data  
+- ✔ Use `static` for utility/helper methods  
+- ✔ Use `abstract` for base blueprints  
+- ✔ Use `super()` properly in inheritance  
+
+
+## 🏁 Module Summary
+
+In this module, you learned:
+
+- How to create classes  
+- How to control access with modifiers  
+- How inheritance works  
+- How to use getters & setters  
+- How to create static members  
+- How abstract classes work  
+- How to implement Singleton pattern  
+- How to use readonly properties  
+
+TypeScript classes are more powerful than basic ES6 classes because they add:
+
+- Strong typing  
+- Access modifiers  
+- Abstract classes  
+- Interfaces (next topic!)  
+
+
+Design patterns support
+
